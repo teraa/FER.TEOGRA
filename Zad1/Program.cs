@@ -30,6 +30,7 @@ namespace TEOGRA.Zad1
                     };
                 }
             }
+
 #if DEBUG
             // Verify Matrix
             Debug.Assert(m.Length == n);
