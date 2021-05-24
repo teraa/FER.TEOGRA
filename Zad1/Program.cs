@@ -17,14 +17,15 @@ namespace TEOGRA.Zad1
             for (int i = 0; i < n; i++)
             {
                 line = Console.ReadLine() ?? throw new FormatException();
+                string[] parts = line.Split(' ');
 
                 m[i] = new bool[n];
                 for (int j = 0; j < n; j++)
                 {
-                    m[i][j] = line[j * 2] switch
+                    m[i][j] = parts[j] switch
                     {
-                        '0' => false,
-                        '1' => true,
+                        "0" => false,
+                        "1" => true,
                         _ => throw new FormatException(),
                     };
                 }
