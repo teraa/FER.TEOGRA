@@ -17,7 +17,7 @@ namespace TEOGRA.Zad1
             for (int i = 0; i < n; i++)
             {
                 line = Console.ReadLine() ?? throw new FormatException();
-                string[] parts = line.Split(' ');
+                string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
                 m[i] = new bool[n];
                 for (int j = 0; j < n; j++)
