@@ -46,10 +46,9 @@ namespace TEOGRA.Zad1
 #endif
 
             int[] result = FindLongestChain(a);
-            for (int i = 0; i < result.Length; i++)
-                result[i]++;
-            Console.WriteLine(string.Join(", ", result));
-
+#if DEBUG
+            Console.WriteLine(string.Join(", ", result.Select(x => x + 1)));
+#endif
             Console.WriteLine(result.Length - 1);
         }
 
