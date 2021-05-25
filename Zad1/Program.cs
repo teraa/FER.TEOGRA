@@ -6,6 +6,8 @@ namespace TEOGRA.Zad1
 {
     class Program
     {
+        // dotnet run -c Release < graf.txt
+
         static void Main(string[] args)
         {
             string line = Console.ReadLine() ?? throw new FormatException();
