@@ -10,7 +10,7 @@ namespace TEOGRA.Zad1
 
         static void Main(string[] args)
         {
-            string line = Console.ReadLine() ?? throw new FormatException();
+            string line = Console.ReadLine() ?? throw new FormatException("First line cannot be null");
 
             int n = int.Parse(line);
             bool[][] a = new bool[n][];
@@ -19,7 +19,7 @@ namespace TEOGRA.Zad1
 
             for (int i = 0; i < a.Length; i++)
             {
-                line = Console.ReadLine() ?? throw new FormatException();
+                line = Console.ReadLine() ?? throw new FormatException($"Missing line number {i + 1}.");
                 string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
                 a[i] = new bool[a.Length];
@@ -29,7 +29,7 @@ namespace TEOGRA.Zad1
                     {
                         "0" => false,
                         "1" => true,
-                        _ => throw new FormatException(),
+                        _ => throw new FormatException($"Value at ({i + 1}, {j + 1}) is not 0 or 1."),
                     };
                 }
             }
@@ -43,7 +43,7 @@ namespace TEOGRA.Zad1
                 Debug.Assert(a[i].Length == n);
 
                 for (int j = i + 1; j < n; j++)
-                    Debug.Assert(a[i][j] == a[j][i]);
+                    Debug.Assert(a[i][j] == a[j][i], $"a[{i}][{j}] and a[{j}][{i}] do not match.");
             }
 #endif
 
