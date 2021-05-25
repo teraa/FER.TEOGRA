@@ -13,7 +13,7 @@
             "program": "${workspaceFolder}/Zad1/bin/Debug/net5.0/Zad1.dll",
             "args": [
                 "<",
-                "graf-peterson.txt"
+                "graf-stablo.txt"
             ],
             "cwd": "${workspaceFolder}/Zad1",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console

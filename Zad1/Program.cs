@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Linq;
 
 namespace TEOGRA.Zad1
 {
@@ -14,13 +15,13 @@ namespace TEOGRA.Zad1
 
             Console.ReadLine();
 
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < m.Length; i++)
             {
                 line = Console.ReadLine() ?? throw new FormatException();
                 string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-                m[i] = new bool[n];
-                for (int j = 0; j < n; j++)
+                m[i] = new bool[m.Length];
+                for (int j = 0; j < m[i].Length; j++)
                 {
                     m[i][j] = parts[j] switch
                     {
@@ -44,31 +45,47 @@ namespace TEOGRA.Zad1
             }
 #endif
 
-            int result = FindLongestChain(n, m);
-            Console.WriteLine(result);
+            int[] result = FindLongestChain(m);
+            for (int i = 0; i < result.Length; i++)
+                result[i]++;
+            Console.WriteLine(string.Join(", ", result));
+
+            Console.WriteLine(result.Length - 1);
         }
 
-        static int FindLongestChain(int n, bool[][] m)
+        static int[] FindLongestChain(bool[][] m)
         {
-            int max = 0;
+            int[] max = Array.Empty<int>();
 
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < m.Length; i++)
             {
-                for (int j = i + 1; j < n; j++)
-                {
-                    int tmp = FindLongestChain(n, i, j, m);
-                    if (max < tmp)
-                        max = tmp;
-                }
+                int[] tmp = FindLongestChain(i, new int[] { i }, m);
+                if (max.Length < tmp.Length)
+                    max = tmp;
             }
 
             return max;
         }
 
-        static int FindLongestChain(int n, int i, int j, bool[][] m)
+        static int[] FindLongestChain(int v, int[] visited, bool[][] m)
         {
-            Console.WriteLine($"({i}, {j})");
-            return 0;
+            int[] max = visited;
+
+            for (int i = 0; i < m.Length; i++)
+            {
+                if (i == v || visited.Contains(i) || !m[v][i])
+                    continue;
+
+                int[] newVisited = new int[visited.Length + 1];
+                visited.CopyTo(newVisited, 0);
+                newVisited[^1] = i;
+
+                int[] tmp = FindLongestChain(i, newVisited, m);
+                if (max.Length < tmp.Length)
+                    max = tmp;
+            }
+
+            return max;
         }
     }
 }
