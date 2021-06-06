@@ -17,7 +17,8 @@ namespace TEOGRA.Zad1.Tests
             };
 
             int[] result = FindLongestChain(a);
-            Assert.Equal(3, result.Length - 1);
+            int length = result.Length - 1;
+            Assert.Equal(3, length);
         }
 
         [Fact]
@@ -36,7 +37,8 @@ namespace TEOGRA.Zad1.Tests
             };
 
             int[] result = FindLongestChain(a);
-            Assert.Equal(6, result.Length - 1);
+            int length = result.Length - 1;
+            Assert.Equal(6, length);
         }
 
         [Fact]
@@ -57,7 +59,8 @@ namespace TEOGRA.Zad1.Tests
             };
 
             int[] result = FindLongestChain(a);
-            Assert.Equal(9, result.Length - 1);
+            int length = result.Length - 1;
+            Assert.Equal(9, length);
         }
     }
 }
