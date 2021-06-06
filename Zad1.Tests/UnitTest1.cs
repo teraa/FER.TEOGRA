@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 using static TEOGRA.Zad1.Program;
 
