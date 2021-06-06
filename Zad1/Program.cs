@@ -4,23 +4,26 @@ using System.Linq;
 
 namespace TEOGRA.Zad1
 {
-    class Program
+    public class Program
     {
         // dotnet run -c Release < graf.txt
 
         static void Main(string[] args)
         {
-            string line = Console.ReadLine() ?? throw new FormatException("First line cannot be null");
+            string line = Console.ReadLine() ?? throw new FormatException("Missing first line.");
 
             int n = int.Parse(line);
             bool[][] a = new bool[n][];
 
-            Console.ReadLine();
+            _ = Console.ReadLine() ?? throw new FormatException("Missing separator line.");
 
             for (int i = 0; i < a.Length; i++)
             {
-                line = Console.ReadLine() ?? throw new FormatException($"Missing line number {i + 1}.");
+                line = Console.ReadLine() ?? throw new FormatException($"Missing matrix row {i + 1}.");
                 string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                if (parts.Length != n)
+                    throw new FormatException($"Invalid number of elements: {parts.Length}, expected: {n} for matrix row {i + 1}");
 
                 a[i] = new bool[a.Length];
                 for (int j = 0; j < a[i].Length; j++)
@@ -29,23 +32,10 @@ namespace TEOGRA.Zad1
                     {
                         "0" => false,
                         "1" => true,
-                        _ => throw new FormatException($"Value at ({i + 1}, {j + 1}) is not 0 or 1."),
+                        _ => throw new FormatException($"Matrix value at ({i + 1}, {j + 1}) is not [0, 1]."),
                     };
                 }
             }
-
-#if DEBUG
-            // Verify Matrix
-            Debug.Assert(a.Length == n);
-
-            for (int i = 0; i < n; i++)
-            {
-                Debug.Assert(a[i].Length == n);
-
-                for (int j = i + 1; j < n; j++)
-                    Debug.Assert(a[i][j] == a[j][i], $"a[{i}][{j}] and a[{j}][{i}] do not match.");
-            }
-#endif
 
             int[] result = FindLongestChain(a);
 #if DEBUG
@@ -54,8 +44,23 @@ namespace TEOGRA.Zad1
             Console.WriteLine(result.Length - 1);
         }
 
-        static int[] FindLongestChain(bool[][] a)
+        static void VerifyMatrix(bool [][] a)
         {
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i].Length != a.Length)
+                    throw new ArgumentException($"Matrix is not square. a[{i}] length: {a[i].Length}, expected: {a.Length}");
+
+                for (int j = i + 1; j < a.Length; j++)
+                    if (a[i][j] != a[j][i])
+                        throw new ArgumentException($"Matrix values at ({i + 1}, {j + 1}) and ({j + 1}, {i + 1}) must be same.");
+            }
+        }
+
+        public static int[] FindLongestChain(bool[][] a)
+        {
+            VerifyMatrix(a);
+
             int[] max = Array.Empty<int>();
 
             for (int i = 0; i < a.Length; i++)
@@ -68,7 +73,7 @@ namespace TEOGRA.Zad1
             return max;
         }
 
-        static int[] FindLongestChain(int v, int[] visited, bool[][] a)
+        public static int[] FindLongestChain(int v, int[] visited, bool[][] a)
         {
             int[] max = visited;
 
