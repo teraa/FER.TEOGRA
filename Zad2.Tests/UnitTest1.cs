@@ -1,6 +1,6 @@
 using System;
 using Xunit;
-using static TEOGRA.Zad2.Program;
+using static TEOGRA.Zad2.Zad2;
 
 namespace TEOGRA.Zad2.Tests
 {

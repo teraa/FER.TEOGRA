@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace TEOGRA.Zad2
 {
-    public class Program
+    public class Zad2
     {
         // dotnet run -c Release < graf.txt
 
