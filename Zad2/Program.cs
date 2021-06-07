@@ -1,12 +1,63 @@
 ﻿using System;
+using System.Linq;
 
 namespace TEOGRA.Zad2
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string line = Console.ReadLine() ?? throw new FormatException("Missing first line.");
+
+            int n = int.Parse(line);
+            bool[][] a = new bool[n][];
+
+            _ = Console.ReadLine() ?? throw new FormatException("Missing separator line.");
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                line = Console.ReadLine() ?? throw new FormatException($"Missing matrix row {i + 1}.");
+                string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                if (parts.Length != n)
+                    throw new FormatException($"Invalid number of elements: {parts.Length}, expected: {n} for matrix row {i + 1}");
+
+                a[i] = new bool[a.Length];
+                for (int j = 0; j < a[i].Length; j++)
+                {
+                    a[i][j] = parts[j] switch
+                    {
+                        "0" => false,
+                        "1" => true,
+                        _ => throw new FormatException($"Matrix value at ({i + 1}, {j + 1}) is not [0, 1]."),
+                    };
+                }
+            }
+
+            bool success = TryFindVertexColoring(4, a, out int[] coloring);
+#if DEBUG
+            if (success)
+                Console.WriteLine(string.Join(", ", coloring.Select(x => x + 1)));
+#endif
+            Console.WriteLine(success ? 1 : 0);
+        }
+
+        static void VerifyMatrix(bool [][] a)
+        {
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i].Length != a.Length)
+                    throw new ArgumentException($"Matrix is not square. a[{i}] length: {a[i].Length}, expected: {a.Length}");
+
+                for (int j = i + 1; j < a.Length; j++)
+                    if (a[i][j] != a[j][i])
+                        throw new ArgumentException($"Matrix values at ({i + 1}, {j + 1}) and ({j + 1}, {i + 1}) must be same.");
+            }
+        }
+
+        public static bool TryFindVertexColoring(int colors, bool[][] a, out int[] result)
+        {
+            throw new NotImplementedException();
         }
     }
 }
