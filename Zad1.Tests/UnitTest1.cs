@@ -1,5 +1,5 @@
 using Xunit;
-using static TEOGRA.Zad1.Zad1;
+using static TEOGRA.Zad1.Program;
 
 namespace TEOGRA.Zad1.Tests
 {
