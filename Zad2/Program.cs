@@ -5,6 +5,8 @@ namespace TEOGRA.Zad2
 {
     public class Program
     {
+        // dotnet run -c Release < graf.txt
+
         static void Main(string[] args)
         {
             string line = Console.ReadLine() ?? throw new FormatException("Missing first line.");
@@ -49,7 +51,7 @@ namespace TEOGRA.Zad2
                 if (a[i].Length != a.Length)
                     throw new ArgumentException($"Matrix is not square. a[{i}] length: {a[i].Length}, expected: {a.Length}");
 
-                for (int j = i + 1; j < a.Length; j++)
+                for (int j = i + 1; j < a[i].Length; j++)
                     if (a[i][j] != a[j][i])
                         throw new ArgumentException($"Matrix values at ({i + 1}, {j + 1}) and ({j + 1}, {i + 1}) must be same.");
             }
@@ -57,7 +59,43 @@ namespace TEOGRA.Zad2
 
         public static bool TryFindVertexColoring(int colors, bool[][] a, out int[] result)
         {
-            throw new NotImplementedException();
+            VerifyMatrix(a);
+            result = new int[a.Length];
+            return TryFindVertexColoring(result, 0, colors, a);
+        }
+
+        private static bool TryFindVertexColoring(int[] values, int idx, int colors, bool[][] a)
+        {
+            if (idx + 1 == values.Length)
+            {
+                for (int i = 0; i < colors; i++)
+                {
+                    values[idx] = i;
+                    if (IsValidColoring(values, a))
+                        return true;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < colors; i++)
+                {
+                    values[idx] = i;
+                    if (TryFindVertexColoring(values, idx + 1, colors, a))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool IsValidColoring(int[] coloring, bool[][] a)
+        {
+            for (int i = 0; i < a.Length; i++)
+                for (int j = i + 1; j < a[i].Length; j++)
+                    if (a[i][j] && coloring[i] == coloring[j])
+                        return false;
+
+            return true;
         }
     }
 }
