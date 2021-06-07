@@ -8,7 +8,7 @@ namespace TEOGRA.Zad2.Tests
     {
 
         [Fact]
-        public void Test_w5__1()
+        public void Test_TryFindVertexColoring_w5__1()
         {
             bool[][] a = new bool[][]
             {
@@ -24,7 +24,7 @@ namespace TEOGRA.Zad2.Tests
         }
 
         [Fact]
-        public void Test_w6__1()
+        public void Test_TryFindVertexColoring_w6__1()
         {
             bool[][] a = new bool[][]
             {
@@ -41,7 +41,7 @@ namespace TEOGRA.Zad2.Tests
         }
 
         [Fact]
-        public void Test_k_2_2__1()
+        public void Test_TryFindVertexColoring_k_2_2__1()
         {
             bool[][] a = new bool[][]
             {
@@ -56,7 +56,7 @@ namespace TEOGRA.Zad2.Tests
         }
 
         [Fact]
-        public void Test_k_2_3__1()
+        public void Test_TryFindVertexColoring_k_2_3__1()
         {
             bool[][] a = new bool[][]
             {
@@ -72,7 +72,7 @@ namespace TEOGRA.Zad2.Tests
         }
 
         [Fact]
-        public void Test_stablo2__1()
+        public void Test_TryFindVertexColoring_stablo2__1()
         {
             bool[][] a = new bool[][]
             {
@@ -90,7 +90,7 @@ namespace TEOGRA.Zad2.Tests
         }
 
         [Fact]
-        public void Test_petersen__1()
+        public void Test_TryFindVertexColoring_petersen__1()
         {
             bool[][] a = new bool[][]
             {
@@ -111,7 +111,7 @@ namespace TEOGRA.Zad2.Tests
         }
 
         [Fact]
-        public void Test_k5__0()
+        public void Test_TryFindVertexColoring_k5__0()
         {
             bool[][] a = new bool[][]
             {
@@ -124,7 +124,7 @@ namespace TEOGRA.Zad2.Tests
         }
 
         [Fact]
-        public void Test_k6_e1__0()
+        public void Test_TryFindVertexColoring_k6_e1__0()
         {
             bool[][] a = new bool[][]
             {
@@ -141,7 +141,7 @@ namespace TEOGRA.Zad2.Tests
         }
 
         [Fact]
-        public void Test_k6_e2__0()
+        public void Test_TryFindVertexColoring_k6_e2__0()
         {
             bool[][] a = new bool[][]
             {
@@ -158,7 +158,7 @@ namespace TEOGRA.Zad2.Tests
         }
 
         [Fact]
-        public void Test_k6_e3__0()
+        public void Test_TryFindVertexColoring_k6_e3__0()
         {
             bool[][] a = new bool[][]
             {
@@ -175,7 +175,7 @@ namespace TEOGRA.Zad2.Tests
         }
 
         [Fact]
-        public void Test_c5__1()
+        public void Test_TryFindVertexColoring_c5__1()
         {
             bool[][] a = new bool[][]
             {
@@ -188,6 +188,25 @@ namespace TEOGRA.Zad2.Tests
 
             bool success = TryFindVertexColoring(4, a, out _);
             Assert.True(success);
+        }
+
+        [Fact]
+        public void Test_IsValidColoring_c5__1()
+        {
+            bool[][] a = new bool[][]
+            {
+                new[] { false, true, false, false, true },
+                new[] { true, false, true, false, false },
+                new[] { false, true, false, true, false },
+                new[] { false, false, true, false, true },
+                new[] { true, false, false, true, false },
+            };
+
+            int[] coloring_true = { 1, 2, 1, 2, 3 };
+            int[] coloring_false = { 1, 2, 1, 2, 1 };
+
+            Assert.True(IsValidColoring(coloring_true, a));
+            Assert.False(IsValidColoring(coloring_false, a));
         }
     }
 }
