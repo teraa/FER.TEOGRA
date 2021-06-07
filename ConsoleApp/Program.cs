@@ -1,6 +1,6 @@
 ﻿using System;
 
-Gen(new int[3], 0, 3);
+Gen(new int[3], 0, 2);
 
 static void Gen(int[] digits, int idx, int n)
 {
