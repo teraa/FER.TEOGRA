@@ -36,11 +36,11 @@ namespace TEOGRA.Zad1
                 }
             }
 
-            int[] result = FindLongestChain(a);
+            int[] chain = FindLongestChain(a);
 #if DEBUG
-            Console.WriteLine(string.Join(", ", result.Select(x => x + 1)));
+            Console.WriteLine(string.Join(", ", chain.Select(x => x + 1)));
 #endif
-            Console.WriteLine(result.Length - 1);
+            Console.WriteLine(chain.Length - 1);
         }
 
         static void VerifyMatrix(bool [][] a)
