@@ -44,7 +44,7 @@ namespace TEOGRA.Zad2
             Console.WriteLine(success ? 1 : 0);
         }
 
-        static void VerifyMatrix(bool [][] a)
+        public static void VerifyMatrix(bool [][] a)
         {
             for (int i = 0; i < a.Length; i++)
             {
@@ -57,14 +57,14 @@ namespace TEOGRA.Zad2
             }
         }
 
-        public static bool TryFindVertexColoring(int colors, bool[][] a, out int[] result)
+        public static bool TryFindVertexColoring(int colors, bool[][] a, out int[] values)
         {
             VerifyMatrix(a);
-            result = new int[a.Length];
-            return TryFindVertexColoring(result, 0, colors, a);
+            values = new int[a.Length];
+            return TryFindVertexColoring(colors, a, values, 0);
         }
 
-        private static bool TryFindVertexColoring(int[] values, int idx, int colors, bool[][] a)
+        public static bool TryFindVertexColoring(int colors, bool[][] a, int[] values, int idx)
         {
             if (idx + 1 == values.Length)
             {
@@ -80,7 +80,7 @@ namespace TEOGRA.Zad2
                 for (int i = 0; i < colors; i++)
                 {
                     values[idx] = i;
-                    if (TryFindVertexColoring(values, idx + 1, colors, a))
+                    if (TryFindVertexColoring(colors, a, values, idx + 1))
                         return true;
                 }
             }

@@ -43,7 +43,7 @@ namespace TEOGRA.Zad1
             Console.WriteLine(chain.Length - 1);
         }
 
-        static void VerifyMatrix(bool [][] a)
+        public static void VerifyMatrix(bool [][] a)
         {
             for (int i = 0; i < a.Length; i++)
             {
