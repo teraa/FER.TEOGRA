@@ -50,7 +50,7 @@ namespace TEOGRA.Zad1
                 if (a[i].Length != a.Length)
                     throw new ArgumentException($"Matrix is not square. a[{i}] length: {a[i].Length}, expected: {a.Length}");
 
-                for (int j = i + 1; j < a.Length; j++)
+                for (int j = i + 1; j < a[i].Length; j++)
                     if (a[i][j] != a[j][i])
                         throw new ArgumentException($"Matrix values at ({i + 1}, {j + 1}) and ({j + 1}, {i + 1}) must be same.");
             }
