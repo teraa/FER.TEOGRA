@@ -42,7 +42,7 @@ namespace TEOGRA.Zad1.Tests
         }
 
         [Fact]
-        public void Test_Graf_Peterson()
+        public void Test_Graf_Petersen()
         {
             bool[][] a = new bool[][]
             {
