@@ -9,16 +9,20 @@ namespace TEOGRA.Zad2
 
         static void Main(string[] args)
         {
-            string line = Console.ReadLine() ?? throw new FormatException("Missing first line.");
+            string line = Console.ReadLine()
+                ?? throw new FormatException("Missing first line.");
 
             int n = int.Parse(line);
             bool[][] a = new bool[n][];
 
-            _ = Console.ReadLine() ?? throw new FormatException("Missing separator line.");
+            _ = Console.ReadLine()
+                ?? throw new FormatException("Missing separator line.");
 
             for (int i = 0; i < a.Length; i++)
             {
-                line = Console.ReadLine() ?? throw new FormatException($"Missing matrix row {i + 1}.");
+                line = Console.ReadLine()
+                    ?? throw new FormatException($"Missing matrix row {i + 1}.");
+
                 string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
                 if (parts.Length != n)
