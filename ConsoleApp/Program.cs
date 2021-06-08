@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 Gen(new int[3], 0, 2);
 
