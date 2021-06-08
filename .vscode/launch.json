@@ -25,6 +25,40 @@
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickProcess}"
+        },
+        {
+            "name": "Zad1",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-zad1",
+            "program": "${workspaceFolder}/Zad1/bin/Debug/net5.0/Zad1.dll",
+            "args": [
+                "<",
+                "input/graf.txt"
+            ],
+            "cwd": "${workspaceFolder}/Zad1",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "logging": {
+                "moduleLoad": false
+            }
+        },
+        {
+            "name": "Zad2",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-zad2",
+            "program": "${workspaceFolder}/Zad2/bin/Debug/net5.0/Zad2.dll",
+            "args": [
+                "<",
+                "input/graf.txt"
+            ],
+            "cwd": "${workspaceFolder}/Zad2",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "logging": {
+                "moduleLoad": false
+            }
         }
     ]
 }
